@@ -15,10 +15,10 @@ interface ToolbarProps {
 
 /**
  * Toolbar provides the main actions header:
- * - App title & icon
+ * - Playful "Noah CodeLab" branding logo tile
  * - Mode Selector (Web vs Python)
  * - Run (trigger manual compile)
- * - Copy actions matching active workspace mode
+ * - Contextual copy actions matching active mode
  * - Reset back to the template
  * - Download unified file matching workspace (.html or .py)
  */
@@ -107,9 +107,29 @@ export function Toolbar({
   return (
     <header className="toolbar">
       <div className="toolbar-branding">
-        <Code2 className="logo-icon animate-pulse" size={24} />
+        {/* Playful "N" Tile Logo */}
+        <a 
+          href="/" 
+          className="logo-tile"
+          style={{
+            display: 'grid',
+            height: '32px',
+            width: '32px',
+            placeItems: 'center',
+            borderRadius: '8px',
+            backgroundColor: '#3a5ccc',
+            fontSize: '1rem',
+            fontWeight: '900',
+            color: '#ffffff',
+            textDecoration: 'none',
+            transition: 'transform 0.2s',
+          }}
+          onClick={(e) => e.preventDefault()}
+        >
+          N
+        </a>
         <h1>
-          Dev<span>Playground</span>
+          Noah <span>CodeLab</span>
         </h1>
 
         {/* Mode Selector Segmented Control */}
@@ -137,10 +157,10 @@ export function Toolbar({
         <button 
           onClick={onRun} 
           className="btn btn-primary"
-          title="Refresh Preview (Ctrl+Enter / Cmd+Enter)"
+          title="Run Code and Refresh Preview (Ctrl+Enter)"
         >
-          <Play size={16} />
-          <span className="btn-text">Run</span>
+          <Play size={15} fill="currentColor" />
+          <span className="btn-text">Run Code</span>
         </button>
 
         <div className="divider" />
@@ -152,7 +172,7 @@ export function Toolbar({
               className={`btn btn-secondary ${copiedHTML ? 'success' : ''}`}
               title="Copy HTML to Clipboard"
             >
-              {copiedHTML ? <Check size={16} className="text-success" /> : <Copy size={16} />}
+              {copiedHTML ? <Check size={14} /> : <Copy size={14} />}
               <span className="btn-text">{copiedHTML ? 'Copied HTML' : 'Copy HTML'}</span>
             </button>
 
@@ -161,7 +181,7 @@ export function Toolbar({
               className={`btn btn-secondary ${copiedCSS ? 'success' : ''}`}
               title="Copy CSS to Clipboard"
             >
-              {copiedCSS ? <Check size={16} className="text-success" /> : <Copy size={16} />}
+              {copiedCSS ? <Check size={14} /> : <Copy size={14} />}
               <span className="btn-text">{copiedCSS ? 'Copied CSS' : 'Copy CSS'}</span>
             </button>
           </>
@@ -171,7 +191,7 @@ export function Toolbar({
             className={`btn btn-secondary ${copiedPython ? 'success' : ''}`}
             title="Copy Python Code to Clipboard"
           >
-            {copiedPython ? <Check size={16} className="text-success" /> : <Copy size={16} />}
+            {copiedPython ? <Check size={14} /> : <Copy size={14} />}
             <span className="btn-text">{copiedPython ? 'Copied Python' : 'Copy Python'}</span>
           </button>
         )}
@@ -182,7 +202,7 @@ export function Toolbar({
           className="btn btn-secondary"
           title={mode === 'web' ? 'Download combined HTML' : 'Download Python script'}
         >
-          <FileDown size={16} />
+          <FileDown size={14} />
           <span className="btn-text">Download</span>
         </button>
 
@@ -193,7 +213,7 @@ export function Toolbar({
           className="btn btn-danger"
           title="Reset to default template"
         >
-          <RotateCcw size={16} />
+          <RotateCcw size={14} />
           <span className="btn-text">Reset</span>
         </button>
       </div>

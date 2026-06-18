@@ -3,7 +3,7 @@ import { Toolbar } from './components/Toolbar';
 import { SplitLayout } from './components/SplitLayout';
 import { EditorPanel } from './components/EditorPanel';
 import { PreviewPanel } from './components/PreviewPanel';
-import { useDebounce } from './hooks/useDebounce';
+
 import { generatePreviewDocument } from './utils/generatePreviewDocument';
 import { generatePythonDocument } from './utils/generatePythonDocument';
 
@@ -169,37 +169,12 @@ export function App() {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Debounce state inputs (300ms delay) to throttle iframe rebuilds while typing
-  const debouncedHtml = useDebounce(html, 300);
-  const debouncedCss = useDebounce(css, 300);
-  const debouncedPython = useDebounce(python, 300);
-
-  // States to track compiled preview code
+  // States to track compiled preview code (only updates when Run button is clicked)
   const [renderedCode, setRenderedCode] = useState({ 
     html: STARTER_HTML, 
     css: STARTER_CSS,
     python: STARTER_PYTHON 
   });
-  
-  const [prevDebouncedHtml, setPrevDebouncedHtml] = useState(STARTER_HTML);
-  const [prevDebouncedCss, setPrevDebouncedCss] = useState(STARTER_CSS);
-  const [prevDebouncedPython, setPrevDebouncedPython] = useState(STARTER_PYTHON);
-
-  // Sync debounced values during render phase to avoid synchronous effects
-  if (
-    debouncedHtml !== prevDebouncedHtml || 
-    debouncedCss !== prevDebouncedCss || 
-    debouncedPython !== prevDebouncedPython
-  ) {
-    setPrevDebouncedHtml(debouncedHtml);
-    setPrevDebouncedCss(debouncedCss);
-    setPrevDebouncedPython(debouncedPython);
-    setRenderedCode({ 
-      html: debouncedHtml, 
-      css: debouncedCss, 
-      python: debouncedPython 
-    });
-  }
 
   // Derive the current preview iframe srcdoc based on the active mode
   const srcDoc = mode === 'web' 
@@ -226,9 +201,11 @@ export function App() {
     if (mode === 'web') {
       setHtml(STARTER_HTML);
       setCss(STARTER_CSS);
+      setRenderedCode((prev) => ({ ...prev, html: STARTER_HTML, css: STARTER_CSS }));
       showToast('Web playground reset to default code.', 'info');
     } else {
       setPython(STARTER_PYTHON);
+      setRenderedCode((prev) => ({ ...prev, python: STARTER_PYTHON }));
       showToast('Python playground reset to default code.', 'info');
     }
   }, [mode, showToast]);

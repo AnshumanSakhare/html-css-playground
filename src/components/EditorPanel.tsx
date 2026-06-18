@@ -30,9 +30,19 @@ const EditorSkeleton = ({ label }: { label: string }) => (
   </div>
 );
 
+// Common UI element: Playful window status dots
+const WindowDots = () => (
+  <div className="window-dots">
+    <span className="window-dot dot-red" />
+    <span className="window-dot dot-yellow" />
+    <span className="window-dot dot-green" />
+  </div>
+);
+
 /**
  * EditorPanel renders the HTML and CSS code editors side-by-side or stacked.
  * In Python mode, it displays a single, full-height python editor.
+ * Includes macOS-style window dots in panel headers for a playful educational look.
  */
 export function EditorPanel({ 
   mode: playgroundMode, 
@@ -76,6 +86,8 @@ export function EditorPanel({
     tabSize: 2,
   };
 
+
+
   if (playgroundMode === 'python') {
     return (
       <div className="editor-panel-container">
@@ -91,6 +103,7 @@ export function EditorPanel({
         <div className="editor-workspace python">
           <div className="editor-wrapper">
             <div className="editor-header">
+              <WindowDots />
               <span className="editor-badge python-badge">Python</span>
               <span className="editor-filename">script.py</span>
             </div>
@@ -147,6 +160,7 @@ export function EditorPanel({
         {(panelView === 'split' || panelView === 'html') && (
           <div className="editor-wrapper html-editor-wrapper">
             <div className="editor-header">
+              <WindowDots />
               <span className="editor-badge html-badge">HTML</span>
               <span className="editor-filename">index.html</span>
             </div>
@@ -167,6 +181,7 @@ export function EditorPanel({
         {(panelView === 'split' || panelView === 'css') && (
           <div className="editor-wrapper css-editor-wrapper">
             <div className="editor-header">
+              <WindowDots />
               <span className="editor-badge css-badge">CSS</span>
               <span className="editor-filename">styles.css</span>
             </div>

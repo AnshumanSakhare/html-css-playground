@@ -10,11 +10,7 @@ interface PreviewPanelProps {
 
 /**
  * PreviewPanel renders the live sandboxed output inside an iframe.
- * Security settings:
- * - Omit 'allow-same-origin' to prevent the iframe from accessing parent window DOM / storage.
- * - Set 'allow-scripts' to let users run Javascript or WASM scripts.
- * 
- * Supports fullscreen toggles to maximize the iframe to full screen space.
+ * Includes macOS-style window dots in headers for a playful student-friendly style.
  */
 export function PreviewPanel({ 
   srcDoc, 
@@ -44,6 +40,11 @@ export function PreviewPanel({
     <div className={`preview-panel-container ${isFullscreen ? 'fullscreen' : ''}`}>
       <div className="preview-header">
         <div className="preview-title">
+          <div className="window-dots">
+            <span className="window-dot dot-red" />
+            <span className="window-dot dot-yellow" />
+            <span className="window-dot dot-green" />
+          </div>
           <Terminal size={14} className="icon-preview" />
           <span>Live Preview</span>
         </div>
