@@ -8,149 +8,82 @@ import { generatePreviewDocument } from './utils/generatePreviewDocument';
 import { generatePythonDocument } from './utils/generatePythonDocument';
 
 // Starter HTML template with a demonstration card
-const STARTER_HTML = `<div class="card">
-  <div class="badge">Live Playground</div>
-  <h1>HTML/CSS Sandbox</h1>
-  <p>
-    Write your markup in <strong>index.html</strong> and style it inside 
-    <strong>styles.css</strong>. Changes will automatically preview on the right 
-    with a 300ms debounce.
-  </p>
-  
-  <button id="interactive-btn">Interactive Test</button>
-  <p id="feedback-msg" class="feedback hidden">✓ JavaScript works inside sandbox!</p>
-</div>
+const STARTER_HTML = `<!-- 1. This is the main title on the screen! -->
+<h1>Hello, World!</h1>
 
-<script>
-  const button = document.getElementById('interactive-btn');
-  const feedback = document.getElementById('feedback-msg');
-  
-  button.addEventListener('click', () => {
-    feedback.classList.remove('hidden');
-    button.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      button.style.transform = 'none';
-    }, 100);
-    
-    setTimeout(() => {
-      feedback.classList.add('hidden');
-    }, 3000);
-  });
-</script>
+<!-- 2. This is a paragraph text block -->
+<p>Welcome to CodeLab! Let's build something fun.</p>
+
+<!-- 3. This is our cartoon character! Try changing the emoji to a panda 🐼 or cat 🐱 -->
+<div class="character">🦊</div>
+
+<!-- 4. This is a speech bubble -->
+<div class="bubble">I can speak! Write some HTML and CSS to customize me.</div>
 `;
 
 // Starter CSS template
-const STARTER_CSS = `body {
-  background: radial-gradient(circle at 50% 30%, #171c2a 0%, #0c0e17 100%);
-  color: #f8fafc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 2rem);
-  font-family: system-ui, -apple-system, sans-serif;
-  margin: 0;
-  padding: 1rem;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 440px;
-  width: 100%;
+const STARTER_CSS = `/* Change the background color of the screen */
+body {
+  background-color: #eef2ff; /* Light friendly blue */
+  color: #1a1a2e; /* Dark navy text */
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  font-family: 'Outfit', sans-serif;
+  padding-top: 40px;
 }
 
-.badge {
-  background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
-  color: #ffffff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  display: inline-block;
-  margin-bottom: 1.25rem;
-}
-
+/* Style the main title */
 h1 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
-  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #3a5ccc; /* CodeLab blue */
+  font-size: 2.2rem;
+  margin-bottom: 8px;
 }
 
+/* Style the paragraph text */
 p {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0 0 1.5rem 0;
+  color: #5a5a72;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
 }
 
-button {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-  color: #ffffff;
-  border: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 8px;
+/* Make our character big and add a hover wiggle animation! */
+.character {
+  font-size: 5rem;
+  display: inline-block;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-  transition: all 0.2s ease;
+  transition: transform 0.2s;
 }
 
-button:hover {
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+.character:hover {
+  transform: scale(1.2) rotate(15deg); /* Grows and wiggles when you point at it! */
 }
 
-.feedback {
-  margin-top: 1rem;
-  margin-bottom: 0;
-  color: #10b981;
-  font-size: 0.85rem;
+/* Style the speech bubble */
+.bubble {
+  background-color: #ffffff;
+  border: 2px solid #3a5ccc;
+  border-radius: 20px;
+  padding: 14px;
+  max-width: 320px;
+  margin: 20px auto;
+  font-size: 0.95rem;
   font-weight: 500;
-  transition: opacity 0.3s ease;
-}
-
-.hidden {
-  display: none;
+  box-shadow: 0 6px 12px rgba(58, 92, 204, 0.08);
 }
 `;
 
 // Starter Python script
-const STARTER_PYTHON = `# Welcome to the Python WASM Sandbox!
-# Write standard Python here, print messages, run math, or raise errors.
+const STARTER_PYTHON = `# Welcome to your Python Playground!
+# Try running this script by clicking the green "Run Code" button above.
 
-import math
-import sys
+print("Hello, World!")
+print("Welcome to CodeLab!")
 
-print("Hello from Python WASM (Pyodide)!")
-print("Python Version:", sys.version)
-print("----------------------------------------")
+# Let's count from 1 to 5
+print("\\nCounting numbers:")
+for number in range(1, 6):
+    print("Number:", number)
 
-# Perform mathematical calculations
-print("Calculating Square Roots:")
-for i in range(1, 6):
-    root = math.sqrt(i)
-    print(f"  √{i} = {root:.5f}")
-    
-print("\\nGenerating a Fibonacci sequence:")
-def fibonacci(n):
-    seq = [0, 1]
-    while len(seq) < n:
-        seq.append(seq[-1] + seq[-2])
-    return seq
-    
-print("  First 10 Fib numbers:", fibonacci(10))
-print("\\nAll output is safely run inside your local browser.")
+# Try changing the text inside the quotes and click "Run Code" again!
 `;
 
 interface Toast {
