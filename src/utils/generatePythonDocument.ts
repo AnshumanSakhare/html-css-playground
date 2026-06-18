@@ -28,8 +28,8 @@ export function generatePythonDocument(pythonCode: string): string {
       body {
         margin: 0;
         padding: 1rem;
-        background-color: #0b0f19;
-        color: #f8fafc;
+        background-color: #ffffff;
+        color: #1a1a2e;
         font-family: 'Fira Code', 'JetBrains Mono', Consolas, Monaco, monospace;
         font-size: 0.9rem;
         line-height: 1.5;
@@ -46,16 +46,16 @@ export function generatePythonDocument(pythonCode: string): string {
       }
       
       .stdout {
-        color: #10b981; /* Green output */
+        color: #1a1a2e; /* Default navy output */
       }
       
       .stderr {
-        color: #f43f5e; /* Coral red errors */
+        color: #ff5f57; /* Playful red for errors */
         font-weight: 500;
       }
       
       .system {
-        color: #64748b; /* Muted slate system logs */
+        color: #5a5a72; /* Slate gray loaders */
         font-style: italic;
       }
       
@@ -63,7 +63,7 @@ export function generatePythonDocument(pythonCode: string): string {
       .cursor::after {
         content: '█';
         animation: blink 1s step-start infinite;
-        color: #6366f1;
+        color: #3a5ccc; /* CodeLab blue cursor */
         margin-left: 2px;
       }
       
