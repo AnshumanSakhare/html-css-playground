@@ -111,7 +111,7 @@ export function EditorPanel({
               <Editor
                 height="100%"
                 language="python"
-                theme="vs-dark"
+                theme="vs"
                 value={python}
                 onChange={onChangePython}
                 options={editorOptions}
@@ -168,7 +168,7 @@ export function EditorPanel({
               <Editor
                 height="100%"
                 language="html"
-                theme="vs-dark"
+                theme="vs"
                 value={html}
                 onChange={onChangeHTML}
                 options={editorOptions}
@@ -189,7 +189,7 @@ export function EditorPanel({
               <Editor
                 height="100%"
                 language="css"
-                theme="vs-dark"
+                theme="vs"
                 value={css}
                 onChange={onChangeCSS}
                 options={editorOptions}

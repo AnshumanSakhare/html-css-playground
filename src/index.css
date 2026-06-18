@@ -441,7 +441,7 @@ body {
 
 .editor-container {
   flex: 1;
-  background-color: #1e1e1e; /* Monaco default dark bg */
+  background-color: #ffffff; /* Monaco light mode bg */
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
   overflow: hidden;
@@ -451,7 +451,7 @@ body {
 .editor-skeleton {
   width: 100%;
   height: 100%;
-  background-color: #1e1e1e;
+  background-color: #ffffff;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -461,14 +461,14 @@ body {
 }
 
 .editor-skeleton-header {
-  border-bottom: 1px solid #2d2d2d;
+  border-bottom: 1px solid var(--border-muted);
   padding-bottom: 10px;
 }
 
 .skeleton-title {
   height: 14px;
   width: 80px;
-  background-color: #2d2d2d;
+  background-color: var(--bg-input);
   border-radius: 3px;
 }
 
@@ -481,7 +481,7 @@ body {
 
 .skeleton-line {
   height: 12px;
-  background-color: #2d2d2d;
+  background-color: var(--bg-input);
   border-radius: 3px;
 }
 
@@ -496,7 +496,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 0.85rem;
-  color: #888888;
+  color: var(--text-secondary);
   font-family: var(--font-sans);
   animation: pulse 1.5s infinite ease-in-out;
 }
